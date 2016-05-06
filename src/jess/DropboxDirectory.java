@@ -7,38 +7,29 @@ import javax.jdo.annotations.PrimaryKey;
 import javax.jdo.annotations.Persistent;
 import com.google.appengine.api.datastore.Key;
 
-
 @PersistenceCapable
 public class DropboxDirectory {
-
-	@PrimaryKey
-	@Persistent
+  @PrimaryKey
+  @Persistent
 	private Key id;
-
-	@Persistent
+  @Persistent
 	private String dirName;
-
-	@Persistent
+  @Persistent
 	private ArrayList<String> subDirectories;
-
-	@Persistent(mappedBy = "owner")
+  @Persistent(mappedBy = "owner")
 	private List<DropboxFile> files;
 
 	public DropboxDirectory(Key id, String dirName) {
-		this.id = id;
-		this.dirName = dirName;
-	}
+	  this.id = id;
+	  this.dirName = dirName;
+	 }
 	//NUMBER 02
 	//ADD SUB
 	public boolean addSubDir(String subDirName) {
-
 		if (subdirExists(subDirName)) {
-
-			return false;
-
-		} else {
+     	return false;
+	} else {
 			if (subDirectories == null) {
-
 				subDirectories = new ArrayList<String>();
 			}
 			subDirectories.add(subDirName);
@@ -48,7 +39,7 @@ public class DropboxDirectory {
 	//SUB DIR EXISTS
 	public boolean subdirExists(String subDirName) {
 		if (subDirectories == null) {
-			return false;
+		 return false;
 		   }
 		    for (int i = 0; i < subDirectories.size(); i++) {
 		           if (subDirName.compareToIgnoreCase(subDirectories.get(i)) == 0) {
@@ -57,7 +48,6 @@ public class DropboxDirectory {
 		    }
 		    	   return false;
 	     }
-	
 	//IS EMPTY
 	public boolean isEmpty() {
 		boolean noFiles = false;
